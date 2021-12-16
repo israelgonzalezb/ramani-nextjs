@@ -84,7 +84,7 @@
   }
 
   .searchSubmit {
-    width: 25px;
+    width: auto;
     flex-shrink: 1;
   }
 
