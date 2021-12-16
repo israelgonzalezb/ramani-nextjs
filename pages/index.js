@@ -78,8 +78,8 @@ export default function Home() {
   </div>
 
   <div className={styles.searchRow}>
-    <form onSubmit={(e)=>{e.preventDefault(); setSearchFilter({...searchFilter, term: e.target.value})}} >
-      <input type="text" value={(searchFilter.term ?? "Paul Graham")} className={styles.search} onChange={(e)=>setSearchInput(e.target.value)}/>
+    <form onSubmit={(e)=>{e.preventDefault(); setSearchFilter({...searchFilter, term: searchInput})}} >
+      <input type="text" value={searchInput} className={styles.search} onChange={(e)=>setSearchInput(e.target.value)}/>
       <button type="submit" className={styles.searchSubmit} >Search</button>
     </form>
   </div>
