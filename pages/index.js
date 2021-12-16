@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
   
-  useEffect(async () => {
+  useEffect(() => {
   let {
     term,
     country,
@@ -49,9 +49,9 @@ export default function Home() {
   let definedArgs = argsArray.filter(entry => entry[1]);
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
-  let response = await fetch(
+  let response = (async () => await fetch(
     `https://itunes.apple.com/search?${paramStr}`
-  ).then(res => res.json());
+  ).then(res => res.json()));
 
   setSearchResults(response);
  
