@@ -19,7 +19,7 @@ export default function Home() {
                                                     explicit: "yes"
                                                    });
 
-  const [searchResults, setSearchResults] = useState({});
+  const [searchResults, setSearchResults] = useState({results: []});
 
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
   
