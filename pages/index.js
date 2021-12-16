@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 
 export default function Home() {
-  const [isActive, setActive] = useState(true);
+  const [isActive, setActive] = useState("All");
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
 
   return (
@@ -23,7 +23,7 @@ export default function Home() {
   </div>
 
   <div className={styles.mediaButtonsRow}>
-    ${mediaTypes.map(m => ( <span key={m} onClick={() => setActive(m)} className={`${styles.mediaButton} ${selected === m ? styles.selectedMediaType : ""}`}>{m}</span>))}
+    {mediaTypes.map(m => (<span key={m} onClick={() => setActive(m)} className={`${styles.mediaButton} ${selected === m ? styles.selectedMediaType : ""}`}>{m}</span>))}
    </div>
 
 
