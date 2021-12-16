@@ -16,12 +16,14 @@ border-left: 1px solid gold;
   .search {
   -webkit-appearance: none;
   appearance: none;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.35);
     color: black;
   }
 
   .search:focus {
-    background: rgba(255,255,255,0.6);
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255,255,255,0.45);
     color: gold;
     font-weight: bold;
 }
@@ -68,7 +70,9 @@ border-left: 1px solid gold;
   .selectedMediaType {
     font-weight: bolder;
     border-width: 1px;
-border-color: white;
+border-color: gold;
+    color: gold;
+    background-color: 
   }
 
   .recentsRow {
