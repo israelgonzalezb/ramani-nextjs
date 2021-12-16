@@ -20,8 +20,8 @@ export default function Home() {
 
   <div className={styles.searchRow}>
     <form>
-      <input type="text" value="Paul Graham" className={styles.searchInput} />
-      <button type="submit">Search</button>
+      <input type="text" value="Paul Graham" className={styles.search} />
+      <button type="submit" className={styles.searchButton} >Search</button>
     </form>
   </div>
 
