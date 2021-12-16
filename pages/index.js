@@ -9,7 +9,7 @@ export default function Home() {
   const [searchFilter, setSearchFilter] = useState({
                                                     term: null,
                                                     country: "US",
-                                                    media: mediaFilter.toLowerCase().replaceAll(" ",""), 
+                                                    media: mediaFilter, 
                                                     entity: null,
                                                     attribute: null,
                                                     callback: null,
@@ -42,6 +42,7 @@ export default function Home() {
   if (!term || !country)
     return { error: "Term and Country are required parameters." };
 
+  term = term.toLowerCase().replace(/\s/g,"")
   // TODO: Check for valid enums on other args
 
   let argsArray = Object.entries(params);
