@@ -67,10 +67,7 @@
     overflow: auto;
     margin: 10px auto;
   }
-  .searchSubmit {
-    width: 25px;
-    flex-shrink: 1;
-  }
+ 
   .mediaButton, .searchSubmit {
     background-color: gold;
     border-style: solid;
@@ -84,6 +81,11 @@
     width: 100%;
     white-space: nowrap;
 
+  }
+
+  .searchSubmit {
+    width: 25px;
+    flex-shrink: 1;
   }
 
   .selectedMediaType {
