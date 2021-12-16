@@ -89,6 +89,12 @@ border-left: 1px solid gold;
     
   }
 
+  .cards {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+  }
+
   .term {
     color: gold;
     
