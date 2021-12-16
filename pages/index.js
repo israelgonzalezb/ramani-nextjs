@@ -19,7 +19,10 @@ export default function Home() {
   </div>
 
   <div className={styles.searchRow}>
-    viewof termInput
+    <form>
+      <input type="text" value="Paul Graham" className={styles.searchInput} />
+      <button type="submit">Search</button>
+    </form>
   </div>
 
   <div className={styles.mediaButtonsRow}>
