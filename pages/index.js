@@ -81,7 +81,7 @@ export default function Home() {
   </div>
 
   <div className={styles.mediaButtonsRow}>
-    {mediaTypes.map(m => (<span key={m} onClick={() => setSelected(m)} className={`${styles.mediaButton} ${isSelected === m ? styles.selectedMediaType : ""}`}>{m}</span>))}
+    {mediaTypes.map(m => (<span key={m} onClick={() => setMediaFilter(m)} className={`${styles.mediaButton} ${mediaFilter === m ? styles.selectedMediaType : ""}`}>{m}</span>))}
    </div>
 
 
