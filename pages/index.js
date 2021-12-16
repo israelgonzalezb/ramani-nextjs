@@ -93,7 +93,7 @@ export default function Home() {
   </div>
 
   <div className={styles.cardsRow}>
-    <Cards data/>
+    <Cards data={searchResults.results}/>
   </div>
 
   <div className={styles.footerRow}>
