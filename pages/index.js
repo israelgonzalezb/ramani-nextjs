@@ -74,7 +74,7 @@ export default function Home() {
 
   <div className={styles.searchRow}>
     <form>
-      <input type="text" value="Paul Graham" onSubmit={} className={styles.search} />
+      <input type="text" value={searchFilter.value ?? "Paul Graham"} onSubmit={(e)=>{e.preventDefault(); setSearchFilter({...searchFilter, term: e.target.value})}) className={styles.search} />
       <button type="submit" className={styles.searchButton} >Search</button>
     </form>
   </div>
