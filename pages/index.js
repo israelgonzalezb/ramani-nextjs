@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [mediaFilter, setMediaFilter] = useState("All");
+  const [searchInput, setSearchInput] = useState("Paul Graham"); // TODO: Random trending item on landing
   const [searchFilter, setSearchFilter] = useState({
                                                     term: null,
                                                     country: "US",
@@ -53,7 +54,7 @@ export default function Home() {
 
   let response = (async () => await fetch(
     `https://itunes.apple.com/search?${paramStr}`,
-    {headers: {"Content-Type": "application/json"}}
+    {headers: {Method: "GET", "Content-Type": "application/json"}}
   ).then(res => res.json()))();
 
   setSearchResults(response);
@@ -78,7 +79,7 @@ export default function Home() {
 
   <div className={styles.searchRow}>
     <form onSubmit={(e)=>{e.preventDefault(); setSearchFilter({...searchFilter, term: e.target.value})}} >
-      <input type="text" value={(searchFilter.term ?? "Paul Graham")} className={styles.search} />
+      <input type="text" value={(searchFilter.term ?? "Paul Graham")} className={styles.search} onChange={(e)=>setSearchInput(e.target.value)}/>
       <button type="submit" className={styles.searchSubmit} >Search</button>
     </form>
   </div>
