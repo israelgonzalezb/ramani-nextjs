@@ -6,10 +6,10 @@ import { useState } from 'react'
 
 export default function Home() {
   const [mediaFilter, setMediaFilter] = useState("All");
-  const [searchFilter, setSearchFikter] = useState({
+  const [searchFilter, setSearchFilter] = useState({
                                                     term: null,
                                                     country: "US",
-                                                    media: mediaFilter.toLowerCase(), 
+                                                    media: mediaFilter.toLowerCase().replaceAll(" ",""), 
                                                     entity: null,
                                                     attribute: null,
                                                     callback: null,
