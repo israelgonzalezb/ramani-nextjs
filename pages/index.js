@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import useState from 'react'
+import { useState } from 'react'
 
 const [isActive, setActive] = useState(true);
 const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
@@ -23,7 +23,7 @@ export default function Home() {
   </div>
 
   <div className={styles.mediaButtonsRow}>
-    ${mediaTypes.map(m => ( <span onClick={() => setActive(m)} className={`${styles.mediaButton} ${selected === m ? styles.selectedMediaType : ""}>${m}</span>))}
+    ${mediaTypes.map(m => ( <span onClick={() => setActive(m)} className={`${styles.mediaButton} ${selected === m ? styles.selectedMediaType : ""}`}>${m}</span>))}
    </div>
 
 
