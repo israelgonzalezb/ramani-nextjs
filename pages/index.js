@@ -4,18 +4,6 @@ import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 
 
-const Cards = ({ results: data }) => {
-  const template = pic => (
-<span class="card">
-  <img src="${pic}" />
-</span>)
-
-  let cards = data.map(i => template(i.artworkUrl100));
-
-  return html`${cards}`;
-  // Prototype css here
-} 
-
 export default function Home() {
   const [mediaFilter, setMediaFilter] = useState("All");
   const [searchFilter, setSearchFikter] = useState({
@@ -62,11 +50,16 @@ export default function Home() {
 
   let response = await fetch(
     `https://itunes.apple.com/search?${paramStr}`
-  ).then(r => r.json());
+  ).then(res => res.json());
 
   setSearchResults(response);
  
   }, [mediaFilter, searchFilter])
+
+  const Cards = ({data}) => data.map((item,idx) =>  (
+    <span key={idx} className={styles.card}>
+    <img className={styles.thumb} src=${item.artworkUrl100} />
+    </span>));
 
   return (
 <div className={styles.container}>
@@ -100,7 +93,7 @@ export default function Home() {
   </div>
 
   <div className={styles.cardsRow}>
-    cardsHtml
+    <Cards data/>
   </div>
 
   <div className={styles.footerRow}>
