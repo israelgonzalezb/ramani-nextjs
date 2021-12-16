@@ -52,7 +52,8 @@ export default function Home() {
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
   let response = (async () => await fetch(
-    `https://itunes.apple.com/search?${paramStr}`
+    `https://itunes.apple.com/search?${paramStr}`,
+    {headers: {"Content-Type": "application/json"}}
   ).then(res => res.json()))();
 
   setSearchResults(response);
