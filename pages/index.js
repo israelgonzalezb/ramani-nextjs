@@ -37,15 +37,17 @@ export default function Home() {
     explicit
   } = searchFilter;
 
+  let filterCopy = {...searchFilter}
+
   // Term and country are required
   // Optional params default to null
   if (!term || !country)
     return { error: "Term and Country are required parameters." };
 
-  term = term.toLowerCase().replace(/\s/g,"")
+  filterCopy.term = term.toLowerCase().replace(/\s/g,"")
   // TODO: Check for valid enums on other args
 
-  let argsArray = Object.entries(params);
+  let argsArray = Object.entries(filterCopy);
   let definedArgs = argsArray.filter(entry => entry[1]);
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
