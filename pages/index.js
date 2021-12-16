@@ -58,7 +58,7 @@ export default function Home() {
 
   const Cards = ({data}) => data.map((item,idx) =>  (
     <span key={idx} className={styles.card}>
-    <img className={styles.thumb} src=${item.artworkUrl100} />
+    <img className={styles.thumb} src={item.artworkUrl100} />
     </span>));
 
   return (
