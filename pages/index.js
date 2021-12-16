@@ -15,7 +15,7 @@ export default function Home() {
   </div>
 
   <div className={styles.searchRow}>
-    ${viewof termInput}
+    viewof termInput
   </div>
 
   <div className={styles.mediaButtonsRow}>
@@ -33,7 +33,6 @@ export default function Home() {
 
   <div className={styles.recentsRow}>
     <span className={styles.rowTitle}>Recent Searches</span>
-    <!-- 11 columns, horizontal scroll overflow, last column is a card that says "Show More" if theres more -->
     <span className={styles.recentTermsRow}>
       <span className={styles.term}>Cool Movie</span>
       <span className={styles.term}>Cool Song</span>
@@ -41,11 +40,11 @@ export default function Home() {
   </div>
 
   <div className={styles.cardsRow}>
-    ${cardsHtml}
+    cardsHtml
   </div>
 
   <div className={styles.footerRow}>
-    <!-- Fixed nav bar at bottom -->
+   
     <span className={styles.footerButton}>&#x2661; Ramani 2021 &#x2661;</span>
   </div>
 
