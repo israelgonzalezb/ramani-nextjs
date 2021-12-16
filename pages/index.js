@@ -65,7 +65,7 @@ export default function Home() {
     </span>));
 
   return (
-<div className={styles.container}>
+<div className={styles.container} style={{height:window.innerHeight+"px"}}>
 <div className={styles.floatContainer}>
   <div className={styles.headerRow}>
     <span className={styles.headLogo}>Ramani</span>
