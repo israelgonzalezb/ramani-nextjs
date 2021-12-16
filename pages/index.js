@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 
 
 export default function Home() {
+  let innerHeight = null; // Init viewport var here, and grab from window object in useEffect
+  
   const [mediaFilter, setMediaFilter] = useState("All");
   const [searchInput, setSearchInput] = useState("Paul Graham"); // TODO: Random trending item on landing
   const [searchFilter, setSearchFilter] = useState({
@@ -25,6 +27,7 @@ export default function Home() {
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
   
   useEffect(() => {
+  let innerHeight = window.innerHeight;
   let {
     term,
     country,
@@ -54,7 +57,7 @@ export default function Home() {
 
   let response = (async () => await fetch(
     `https://itunes.apple.com/search?${paramStr}`,
-    {headers: {Method: "GET", "Content-Type": "application/json"}}
+    {method: "GET", {headers: { "Content-Type": "application/json"}}}
   ).then(res => res.json()))();
 
   setSearchResults(response);
@@ -67,7 +70,7 @@ export default function Home() {
     </span>));
 
   return (
-<div className={styles.container} style={{height:window.innerHeight+"px"}}>
+<div className={styles.container} style={{height: innerHeight ? innerHeight+"px" : "100vw"}}>
 <div className={styles.floatContainer}>
   <div className={styles.headerRow}>
     <span className={styles.headLogo}>Ramani</span>
