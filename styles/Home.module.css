@@ -31,6 +31,8 @@
   appearance: none;
     background: rgba(255,255,255,0.35);
     color: black;
+    width: 125px;
+    flex-shrink: 2;
   }
 
   .search:focus {
@@ -64,6 +66,10 @@
     justify-content: space-between;
     overflow: auto;
     margin: 10px auto;
+  }
+  .searchSubmit {
+    width: 25px;
+    flex-shrink: 1;
   }
   .mediaButton, .searchSubmit {
     background-color: gold;
