@@ -51,7 +51,7 @@ export default function Home() {
 
   let response = (async () => await fetch(
     `https://itunes.apple.com/search?${paramStr}`
-  ).then(res => res.json()));
+  ).then(res => res.json()))();
 
   setSearchResults(response);
  
