@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+Import useState from 'react'
+
+const [isActive, setActive] = useState(true);
+const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
 
 export default function Home() {
   return (
@@ -19,16 +23,8 @@ export default function Home() {
   </div>
 
   <div className={styles.mediaButtonsRow}>
-    <span className={[styles.mediaButton,styles.selectedMediaType]}>All</span>
-    <span className={styles.mediaButton}>Movies</span>
-<span className={styles.mediaButton}>Podcasts</span>
-    <span className={styles.mediaButton}>Music Videos</span>
-<span className={styles.mediaButton}>Audiobooks</span>
-    <span className={styles.mediaButton}>Short Films</span>
-<span className={styles.mediaButton}>TV Shows</span>
-<span className={styles.mediaButton}>Software</span>
-<span className={styles.mediaButton}>Ebooks</span>
-  </div>
+    ${mediaTypes.map(m => ( <span className={`${styles.mediaButton} ${selected === ${m} ? styles.selectedMediaType : ""}>${m}</span>))}
+   </div>
 
 
   <div className={styles.recentsRow}>
