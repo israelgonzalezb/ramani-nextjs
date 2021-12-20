@@ -90,7 +90,7 @@ export default function Home() {
       fetcher
     );
     let { data = [], error } = response;
-    return <div style={{ color: 'red' }}>{JSON.stringify(response.data)}</div>;
+    return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
 
     if (error)
       return (
