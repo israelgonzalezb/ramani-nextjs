@@ -61,7 +61,8 @@ export default function Home() {
      `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.text())});
-    const { data = [], error } = JSON.parse(response);
+    let { data = [], error } = response;
+    data = JSON.parse(data);
     console.log("!!!",error)
     if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error.message)} {paramStr}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
