@@ -60,7 +60,7 @@ export default function Home() {
 
    const { data, error } = useSWR(
      `https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
-       {method: "GET", {headers: { "Content-Type": "application/json"}}}
+       {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.json())});
     console.log("!!!",data)
     if (error) return <div>Failed to load results</div>;
