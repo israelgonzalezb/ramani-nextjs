@@ -103,7 +103,7 @@ export default function Home() {
 
   <div className={styles.cardsRow}>
     <div className={styles.cards}>
-      <Cards search={searchTerm} />
+      <Cards search={searchInput} />
     </div>
   </div>
 
