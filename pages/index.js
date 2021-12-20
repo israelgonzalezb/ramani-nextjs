@@ -60,7 +60,7 @@ export default function Home() {
   const response = useSWR(
      `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
-    ).then(async res => JSON.parse(await res.text()))});
+    ).then(async res => console.log(await res.text()))});
     let { data = [], error } = response;
     
     console.log("!!!",error)
