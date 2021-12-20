@@ -67,33 +67,35 @@ export default function Home() {
     let definedArgs = argsArray.filter((entry) => entry[1]);
     let paramStr = definedArgs.map((entry) => entry.join('=')).join('&');
 
+    const fetcher = async (url) => {
+      return fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'text/plain' },
+      }).then(async (res) => {
+        //let out = await res.json();
+        return res;
+      });
+    }
+
     const response = useSWR(
       `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`,
-      async (url) => {
-        return fetch(url, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        }).then(async (res) => {
-          let out = await res.json();
-          return out;
-        });
-      }
+      fetcher
     );
     let { data = [], error } = response;
 
     if (error)
       return (
         <div style={{ color: 'red' }}>
-          Failed to load results {JSON.stringify(error.message)} {paramStr}
+          Failed to load results {JSON.stringify(response)} {error.message}{paramStr}
         </div>
       );
     if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
-
-    return data.map((item, idx) => (
-      <span key={idx} className={styles.card}>
-        <Image className={styles.thumb} src={item.artworkUrl100} />
-      </span>
-    ));
+    return <div style={{ color: "red" }}>{typeof data}</div>
+    // return data.map((item, idx) => (
+    //   <span key={idx} className={styles.card}>
+    //     <Image className={styles.thumb} src={item.artworkUrl100} />
+    //   </span>
+    // ));
   };
 
   return (
