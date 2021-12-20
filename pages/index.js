@@ -63,7 +63,6 @@ export default function Home() {
     ).then(async res => console.log(await res.text()))});
     let { data = [], error } = response;
     
-    console.log("!!!",error)
     if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error.message)} {paramStr}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
 
