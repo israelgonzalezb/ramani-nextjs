@@ -57,7 +57,7 @@ export default function Home() {
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
 
-   const { data, error } = useSWR(
+   const { data = [], error } = useSWR(
      `https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.json())});
