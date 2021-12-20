@@ -47,8 +47,7 @@ export default function Home() {
 
   // Term and country are required
   // Optional params default to null
-  if (!term || !country)
-    return (<div>Term and Country are required parameters.</div> );
+  if (!term || !country) console.log("Term and Country are required parameters" );
 
   filterCopy.term = term.toLowerCase().replace(/\s/g,"")
   // TODO: Check for valid enums on other args
