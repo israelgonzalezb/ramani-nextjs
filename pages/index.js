@@ -56,11 +56,12 @@ export default function Home() {
   let definedArgs = argsArray.filter(entry => entry[1]);
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
-
-   const { data = [], error } = useSWR(
+   
+  const response = useSWR(
      `https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.json())});
+    const { data = [], error } = response;
     console.log("!!!",error)
     if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error)}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
