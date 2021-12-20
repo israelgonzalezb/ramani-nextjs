@@ -62,7 +62,7 @@ export default function Home() {
        {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.json())});
     console.log("!!!",error)
-    if (error) return <div style={{color: "red"}}>Failed to load results</div>;
+    if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error)}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
 
     return (data.map((item,idx) =>  (
