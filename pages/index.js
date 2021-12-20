@@ -90,7 +90,7 @@ export default function Home() {
       fetcher
     );
     let { data = [], error } = response;
-    return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
+    // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
 
     if (error)
       return (
@@ -100,12 +100,12 @@ export default function Home() {
         </div>
       );
     if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
-    return <div style={{ color: 'red' }}>{typeof data}</div>;
-    // return data.map((item, idx) => (
-    //   <span key={idx} className={styles.card}>
-    //     <Image className={styles.thumb} src={item.artworkUrl100} />
-    //   </span>
-    // ));
+    //return <div style={{ color: 'red' }}>{typeof data}</div>;
+    return JSON.parse(data[0]).map((item, idx) => (
+      <span key={idx} className={styles.card}>
+        <Image className={styles.thumb} src={item.artworkUrl100} alt={term}/>
+      </span>
+    ));
   };
 
   return (
