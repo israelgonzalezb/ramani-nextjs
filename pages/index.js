@@ -78,7 +78,7 @@ export default function Home() {
     const fetcher = async (url) => {
       return fetch(url, {
         method: 'GET',
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'text/javascript' },
       }).then(async (res) => {
         //let out = await res.json();
         return res;
@@ -89,7 +89,7 @@ export default function Home() {
       `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`,
       fetcher
     );
-    let { data = [], error } = response;
+    let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
 
     if (error)
@@ -99,9 +99,9 @@ export default function Home() {
           {paramStr}
         </div>
       );
-    if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
+    if (!data?.results) return <div style={{ color: 'yellow' }}>loading...</div>;
     //return <div style={{ color: 'red' }}>{typeof data}</div>;
-    return JSON.parse(data[0]).map((item, idx) => (
+    return JSON.parse(data.results).map((item, idx) => (
       <span key={idx} className={styles.card}>
         <Image className={styles.thumb} src={item.artworkUrl100} alt={term}/>
       </span>
