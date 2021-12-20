@@ -57,10 +57,9 @@ export default function Home() {
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
    
-  const response = useSWR(
-     `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
-       {method: "GET", headers: { "Content-Type": "application/json"}}
-    ).then(async res => {let out = await res.json(); return out;})};
+  const response = useSWR(`https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`, 
+    async (url) => { return await fetch(url,{method: "GET", headers: { "Content-Type": "application/json"}})
+      .then(async res => {let out = await res.json(); return out;});
     let { data = [], error } = response;
     
     if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error.message)} {paramStr}</div>;
