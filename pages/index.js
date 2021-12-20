@@ -63,7 +63,7 @@ export default function Home() {
     ).then(res => res.json())});
     const { data = [], error } = response;
     console.log("!!!",error)
-    if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(response.error)}</div>;
+    if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(response.error.message)}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
 
     return (data.map((item,idx) =>  (
