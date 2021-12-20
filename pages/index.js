@@ -59,7 +59,7 @@ export default function Home() {
       console.log('Term and Country are required parameters');
 
     filterCopy.term = term.toLowerCase().replace(/\s/g, '%20');
-    filterCopy.media = () => {
+    filterCopy.media = (() => {
       // Bunch of string mutations to get the media type the apple api expects... all, musicVideo, etc...
       let mutableMedia = [media[0].toLowerCase(), ...media.slice(1)]
         .join('')
@@ -67,7 +67,7 @@ export default function Home() {
       if (mutableMedia[mutableMedia.length - 1] === 's')
         mutableMedia = media.slice(0, -1);
       return mutableMedia;
-    };
+    })();;
 
     // TODO: Check for valid enums on other args
 
