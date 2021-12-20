@@ -63,6 +63,7 @@ export default function Home() {
       url,
       {method: "GET", {headers: { "Content-Type": "application/json"}}}
     ).then(res => res.json()));
+    console.log("!!!",data)
     if (error) return <div>Failed to load results</div>;
     if (!data.length) return <div>loading...</div>;
 
