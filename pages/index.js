@@ -59,7 +59,7 @@ export default function Home() {
    
   const response = useSWR(
      `https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
-       {method: "GET", headers: { "Content-Type": "application/json"}}
+       {method: "GET", headers: { "Access-Control-Allow-Origin":"*", "Content-Type": "application/json"}}
     ).then(res => res.json())});
     const { data = [], error } = response;
     console.log("!!!",error)
