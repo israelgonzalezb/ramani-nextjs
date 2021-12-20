@@ -28,7 +28,20 @@ export default function Home() {
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
   
   useEffect(() => {
-  let innerHeight = window.innerHeight;
+  innerHeight = window.innerHeight;
+ 
+
+  
+  let response = (async () => await fetch(
+    `https://itunes.apple.com/search?${paramStr}`,
+    {method: "GET", {headers: { "Content-Type": "application/json"}}}
+  ).then(res => res.json()))();
+
+  setSearchResults(response);
+ 
+  }, [mediaFilter, searchFilter]);
+
+  const Cards = ({data}) => {
   let {
     term,
     country,
@@ -47,7 +60,7 @@ export default function Home() {
   // Term and country are required
   // Optional params default to null
   if (!term || !country)
-    return { error: "Term and Country are required parameters." };
+    return (<div>Term and Country are required parameters.</div> );
 
   filterCopy.term = term.toLowerCase().replace(/\s/g,"")
   // TODO: Check for valid enums on other args
@@ -56,16 +69,7 @@ export default function Home() {
   let definedArgs = argsArray.filter(entry => entry[1]);
   let paramStr = definedArgs.map(entry => entry.join("=")).join("&");
 
-  let response = (async () => await fetch(
-    `https://itunes.apple.com/search?${paramStr}`,
-    {method: "GET", {headers: { "Content-Type": "application/json"}}}
-  ).then(res => res.json()))();
 
-  setSearchResults(response);
- 
-  }, [mediaFilter, searchFilter]);
-
-  const Cards = ({data}) => {
    const { data, error } = useSWR(
      `https://itunes.apple.com/search?${paramStr}`, async (url) => await fetch(
       url,
