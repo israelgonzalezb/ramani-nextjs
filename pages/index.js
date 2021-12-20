@@ -60,6 +60,13 @@ export default function Home() {
       
 
     filterCopy.term = term.toLowerCase().replace(/\s/g, '%20');
+    filterCopy.media = () => {
+      // Bunch of string mutations to get the media type the apple api expects... all, musicVideo, etc...
+      let mutableMediaStart = media[0].toLowerCase()
+        let mutableMedia = [media[0],media.slice(1)].join("").replace(" ", "");
+      if (media[media.length - 1] === "s") mutableMedia = media.split("").pop().join("");
+      return mutableMedia;
+    }
 
     // TODO: Check for valid enums on other args
 
