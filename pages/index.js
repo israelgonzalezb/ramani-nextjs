@@ -35,7 +35,7 @@ export default function Home() {
  
   }, [/*mediaFilter, searchFilter*/]);
 
-  const Cards = ({data}) => {
+  const Cards = () => {
   let {
     term,
     country,
@@ -70,7 +70,7 @@ export default function Home() {
       {method: "GET", {headers: { "Content-Type": "application/json"}}}
     ).then(res => res.json()));
     if (error) return <div>Failed to load results</div>;
-    if (!posts.length) return <div>loading...</div>;
+    if (!data.length) return <div>loading...</div>;
 
     return (data.map((item,idx) =>  (
       <span key={idx} className={styles.card}>
@@ -110,7 +110,7 @@ export default function Home() {
 
   <div className={styles.cardsRow}>
     <div className={styles.cards}>
-      <Cards data={searchResults.results}/>
+      <Cards />
     </div>
   </div>
 
