@@ -49,7 +49,7 @@ export default function Home() {
   // Optional params default to null
   if (!term || !country) console.log("Term and Country are required parameters" );
 
-  filterCopy.term = term.toLowerCase().replace(/\s/g,"")
+  filterCopy.term = term.toLowerCase().replace(/\s/g,"%20")
   // TODO: Check for valid enums on other args
 
   let argsArray = Object.entries(filterCopy);
@@ -60,10 +60,10 @@ export default function Home() {
   const response = useSWR(
      `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
-    ).then(res => res.json())});
-    const { data = [], error } = response;
+    ).then(res => res.text())});
+    const { data = [], error } = JSON.parse(response);
     console.log("!!!",error)
-    if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(response.error.message)} {paramStr}</div>;
+    if (error) return <div style={{color: "red"}}>Failed to load results {JSON.stringify(error.message)} {paramStr}</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
 
     return (data.map((item,idx) =>  (
