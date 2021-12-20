@@ -31,15 +31,9 @@ export default function Home() {
   innerHeight = window.innerHeight;
  
 
-  
-  let response = (async () => await fetch(
-    `https://itunes.apple.com/search?${paramStr}`,
-    {method: "GET", {headers: { "Content-Type": "application/json"}}}
-  ).then(res => res.json()))();
-
-  setSearchResults(response);
+  //setSearchResults(response);
  
-  }, [mediaFilter, searchFilter]);
+  }, [/*mediaFilter, searchFilter*/]);
 
   const Cards = ({data}) => {
   let {
