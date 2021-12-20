@@ -55,18 +55,19 @@ export default function Home() {
 
     // Term and country are required
     // Optional params default to null
-    if (!term || !country) 
+    if (!term || !country)
       console.log('Term and Country are required parameters');
-      
 
     filterCopy.term = term.toLowerCase().replace(/\s/g, '%20');
     filterCopy.media = () => {
       // Bunch of string mutations to get the media type the apple api expects... all, musicVideo, etc...
-      let mutableMediaStart = media[0].toLowerCase()
-        let mutableMedia = [media[0],media.slice(1)].join("").replace(" ", "");
-      if (media[media.length - 1] === "s") mutableMedia = media.split("").pop().join("");
+      let mutableMedia = [media[0].toLowerCase(), ...media.slice(1)]
+        .join('')
+        .replace(' ', '');
+      if (mutableMedia[mutableMedia.length - 1] === 's')
+        mutableMedia = media.slice(0, -1);
       return mutableMedia;
-    }
+    };
 
     // TODO: Check for valid enums on other args
 
@@ -82,7 +83,7 @@ export default function Home() {
         //let out = await res.json();
         return res;
       });
-    }
+    };
 
     const response = useSWR(
       `https://ohq-cors.herokuapp.com/https://itunes.apple.com/search?${paramStr}`,
@@ -93,11 +94,12 @@ export default function Home() {
     if (error)
       return (
         <div style={{ color: 'red' }}>
-          Failed to load results {JSON.stringify(response)} {error.message}{paramStr}
+          Failed to load results {JSON.stringify(response)} {error.message}
+          {paramStr}
         </div>
       );
     if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
-    return <div style={{ color: "red" }}>{typeof data}</div>
+    return <div style={{ color: 'red' }}>{typeof data}</div>;
     // return data.map((item, idx) => (
     //   <span key={idx} className={styles.card}>
     //     <Image className={styles.thumb} src={item.artworkUrl100} />
