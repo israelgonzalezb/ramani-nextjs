@@ -55,17 +55,12 @@ export default function Home() {
 
     // Term and country are required
     // Optional params default to null
-    if (!term || !country) {
+    if (!term || !country) 
       console.log('Term and Country are required parameters');
-      return (
-        <div style={{ color: 'red' }}>
-          There was an error loading the results
-        </div>
-      );
-    }
+      
 
     filterCopy.term = term.toLowerCase().replace(/\s/g, '%20');
-    
+
     // TODO: Check for valid enums on other args
 
     let argsArray = Object.entries(filterCopy);
