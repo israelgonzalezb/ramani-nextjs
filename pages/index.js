@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
+import useSWR from 'swr';
 
 
 export default function Home() {
@@ -62,12 +63,21 @@ export default function Home() {
 
   setSearchResults(response);
  
-  }, [mediaFilter, searchFilter])
+  }, [mediaFilter, searchFilter]);
 
-  const Cards = ({data}) => data.map((item,idx) =>  (
-    <span key={idx} className={styles.card}>
-    <img className={styles.thumb} src={item.artworkUrl100} />
-    </span>));
+  const Cards = ({data}) => {
+   const { data, error } = useSWR(
+     `https://itunes.apple.com/search?${paramStr}`, async (url) => await fetch(
+      url,
+      {method: "GET", {headers: { "Content-Type": "application/json"}}}
+    ).then(res => res.json()));
+    if (error) return <div>Failed to load results</div>;
+    if (!posts.length) return <div>loading...</div>;
+
+    return (data.map((item,idx) =>  (
+      <span key={idx} className={styles.card}>
+      <img className={styles.thumb} src={item.artworkUrl100} />
+      </span>)))}
 
   return (
 <div className={styles.container} style={{height: innerHeight ? innerHeight+"px" : "100vw"}}>
