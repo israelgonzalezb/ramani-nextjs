@@ -103,6 +103,7 @@ export default function Home() {
 
   <div className={styles.cardsRow}>
     <div className={styles.cards}>
+    ${innerHeight}
       <Cards search={searchInput} />
     </div>
   </div>
