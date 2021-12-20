@@ -99,7 +99,7 @@ export default function Home() {
           {paramStr}
         </div>
       );
-    if (!data?.results) return <div style={{ color: 'yellow' }}>loading...</div>;
+    if (!data?.results.length) return <div style={{ color: 'yellow' }}>loading...</div>;
     //return <div style={{ color: 'red' }}>{typeof data}</div>;
     return JSON.parse(data.results).map((item, idx) => (
       <span key={idx} className={styles.card}>
@@ -164,8 +164,7 @@ export default function Home() {
 
         <div className={styles.cardsRow}>
           <div className={styles.cards}>
-            ${innerHeight}
-            <Cards search={searchInput} />
+            <Cards  />
           </div>
         </div>
 
