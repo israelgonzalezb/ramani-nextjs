@@ -11,7 +11,7 @@ export default function Home() {
   const [mediaFilter, setMediaFilter] = useState("All");
   const [searchInput, setSearchInput] = useState("Paul Graham"); // TODO: Random trending item on landing
   const [searchFilter, setSearchFilter] = useState({
-                                                    term: null,
+                                                    term: "",
                                                     country: "US",
                                                     media: mediaFilter, 
                                                     entity: null,
