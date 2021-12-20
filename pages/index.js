@@ -61,7 +61,7 @@ export default function Home() {
      `https://itunes.apple.com/search?${paramStr}`, async (url) => { return await fetch(url,
        {method: "GET", headers: { "Content-Type": "application/json"}}
     ).then(res => res.json())});
-    console.log("!!!",data)
+    console.log("!!!",error)
     if (error) return <div style={{color: "red"}}>Failed to load results</div>;
     if (!data.length) return <div style={{color: "yellow"}} >loading...</div>;
 
