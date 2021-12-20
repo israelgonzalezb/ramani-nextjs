@@ -27,13 +27,7 @@ export default function Home() {
 
   const mediaTypes = ["All","Movies","Podcasts","Music Videos","Audiobooks", "Short Films", "TV Shows", "Software", "Ebooks"]
   
-  useEffect(() => {
-  innerHeight = window.innerHeight;
- 
-
-  //setSearchResults(response);
- 
-  }, [/*mediaFilter, searchFilter*/]);
+  useEffect(() => innerHeight = window.innerHeight);
 
   const Cards = () => {
   let {
