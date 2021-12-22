@@ -92,6 +92,7 @@ export default function Home() {
     let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
 
+    if(data) console.log("!!!!!!",data)
     if (error)
       return (
         <div style={{ color: 'red' }}>
