@@ -37,7 +37,7 @@ export default function Home() {
 
   useEffect(() => (innerHeight = window.innerHeight));
 
-  const Cards = () => {
+  const Cards = async () => {
     let {
       term,
       country,
@@ -91,7 +91,7 @@ export default function Home() {
     );
     let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
-    if (data) data = data.json()
+    if (data) data = await data.json()
     console.log("!!!!!!",data)
     if (error)
       return (
