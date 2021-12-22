@@ -40,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     innerHeight.current = window.innerHeight;
-    setLocalStorage({recentSearches: JSON.parse(window.localStorage.recentSearches)});
+    setLocalStorage({recentSearches: JSON.parse(window.localStorage?.recentSearches ?? [])});
   }, []);
 
   useEffect(() => {
@@ -103,25 +103,29 @@ export default function Home() {
       fetcher
     );
     let { data, error } = response;
-    // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
-    if (data) {
-      data = await data.json().then((res) => res.results);
-      console.log('!!!!!!', data);
-    }
-    if (error)
-      return (
-        <div style={{ color: 'red' }}>
-          Failed to load results {JSON.stringify(response)} {error.message}
-          {paramStr}
-        </div>
-      );
-    if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
-    //return <div style={{ color: 'red' }}>{typeof data}</div>;
-    return data.map((item, idx) => (
-      <span key={idx} className={styles.card}>
-        <Image className={styles.thumb} src={item.artworkUrl100} alt={term} />
-      </span>
-    ));
+    console.log('!!!!!!', data);
+    // if (data) {
+    //   data = data.then((res) => res.json());
+    //   let { results } = data;
+    //   setSearchResults({ results });
+      
+    //   console.log('!!!!!!', results);
+    // }
+    // if (error)
+    //   return (
+    //     <div style={{ color: 'red' }}>
+    //       Failed to load results {JSON.stringify(response)} {error.message}
+    //       {paramStr}
+    //     </div>
+    //   );
+    // if (!data?.length) return <div style={{ color: 'yellow' }}>loading...</div>;
+    // //return <div style={{ color: 'red' }}>{typeof data}</div>;
+    // return data.map((item, idx) => (
+    //   <span key={idx} className={styles.card}>
+    //     <Image className={styles.thumb} src={item.artworkUrl100} alt={term} />
+    //   </span>
+    // ));
+    return <div></div>
   };
 
   return (
@@ -178,11 +182,11 @@ export default function Home() {
           <div className={styles.recentsRow}>
             <span className={styles.rowTitle}>Recent Searches</span>
             <span className={styles.recentTermsRow}>
-              {localStorage.recentSearches.map((term) => (
+              {/* {localStorage.recentSearches.map((term) => (
                 <span key={term} className={styles.term}>
                   {term}
                 </span>
-              ))}
+              ))} */}
             </span>
           </div>
 
