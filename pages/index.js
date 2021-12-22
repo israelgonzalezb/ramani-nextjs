@@ -22,7 +22,9 @@ export default function Home() {
   });
 
   const [searchResults, setSearchResults] = useState({ results: [] });
-  const [localStorage, setLocalStorage] = useState({ recentSearches: window.localStorage.recentSearches || [] });
+  const [localStorage, setLocalStorage] = useState({
+    recentSearches: window.localStorage.recentSearches || [],
+  });
 
   const mediaTypes = [
     'All',
@@ -41,7 +43,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('recentSearches', JSON.stringify(localStorage.recentSearches));
+    window.localStorage.setItem(
+      'recentSearches',
+      JSON.stringify(localStorage.recentSearches)
+    );
   }, [localStorage.recentSearches]);
 
   const Cards = async () => {
@@ -98,8 +103,10 @@ export default function Home() {
     );
     let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
-    if (data) data = await data.json().then((res) => res.results);
-    console.log('!!!!!!', data);
+    if (data) {
+      data = await data.json().then((res) => res.results);
+      console.log('!!!!!!', data);
+    }
     if (error)
       return (
         <div style={{ color: 'red' }}>
@@ -107,10 +114,10 @@ export default function Home() {
           {paramStr}
         </div>
       );
-    if (!data?.results?.length)
+    if (!data.length)
       return <div style={{ color: 'yellow' }}>loading...</div>;
     //return <div style={{ color: 'red' }}>{typeof data}</div>;
-    return JSON.parse(data.results).map((item, idx) => (
+    return data.map((item, idx) => (
       <span key={idx} className={styles.card}>
         <Image className={styles.thumb} src={item.artworkUrl100} alt={term} />
       </span>
@@ -134,7 +141,10 @@ export default function Home() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              setLocalStorage({...localStorage, recentSearches: [...localStorage.recentSearches, searchInput]});
+              setLocalStorage({
+                ...localStorage,
+                recentSearches: [...localStorage.recentSearches, searchInput],
+              });
               setSearchFilter({ ...searchFilter, term: searchInput });
             }}
           >
@@ -167,8 +177,11 @@ export default function Home() {
         <div className={styles.recentsRow}>
           <span className={styles.rowTitle}>Recent Searches</span>
           <span className={styles.recentTermsRow}>
-            <span className={styles.term}>Cool Movie</span>
-            <span className={styles.term}>Cool Song</span>
+            {localStorage.recentSearches.map((term) => (
+              <span key={term} className={styles.term}>
+                {term}
+              </span>
+            ))}
           </span>
         </div>
 
