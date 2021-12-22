@@ -23,7 +23,7 @@ export default function Home() {
 
   const [searchResults, setSearchResults] = useState({ results: [] });
   const [localStorage, setLocalStorage] = useState({
-    recentSearches: window.localStorage.recentSearches || [],
+    recentSearches: [],
   });
 
   const mediaTypes = [
@@ -40,6 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     innerHeight.current = window.innerHeight;
+    setLocalStorage({recentSearches: JSON.parse(window.localStorage.recentSearches)});
   }, []);
 
   useEffect(() => {
