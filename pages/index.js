@@ -114,8 +114,7 @@ export default function Home() {
           {paramStr}
         </div>
       );
-    if (!data.length)
-      return <div style={{ color: 'yellow' }}>loading...</div>;
+    if (!data.length) return <div style={{ color: 'yellow' }}>loading...</div>;
     //return <div style={{ color: 'red' }}>{typeof data}</div>;
     return data.map((item, idx) => (
       <span key={idx} className={styles.card}>
@@ -130,64 +129,66 @@ export default function Home() {
       style={{ height: innerHeight ? innerHeight + 'px' : '100vw' }}
     >
       <div className={styles.floatContainer}>
-        <div className={styles.headerRow}>
-          <span className={styles.headLogo}>Ramani</span>
-          <span className={styles.headRight}>
-            <span className={styles.headProfile}>&#x2699;</span>
-          </span>
-        </div>
-
-        <div className={styles.searchRow}>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setLocalStorage({
-                ...localStorage,
-                recentSearches: [...localStorage.recentSearches, searchInput],
-              });
-              setSearchFilter({ ...searchFilter, term: searchInput });
-            }}
-          >
-            <input
-              type="text"
-              value={searchInput}
-              className={styles.search}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-            <button type="submit" className={styles.searchSubmit}>
-              Search
-            </button>
-          </form>
-        </div>
-
-        <div className={styles.mediaButtonsRow}>
-          {mediaTypes.map((m) => (
-            <span
-              key={m}
-              onClick={() => setMediaFilter(m)}
-              className={`${styles.mediaButton} ${
-                mediaFilter === m ? styles.selectedMediaType : ''
-              }`}
-            >
-              {m}
+        <div className={styles.mainContent}>
+          <div className={styles.headerRow}>
+            <span className={styles.headLogo}>Ramani</span>
+            <span className={styles.headRight}>
+              <span className={styles.headProfile}>&#x2699;</span>
             </span>
-          ))}
-        </div>
+          </div>
 
-        <div className={styles.recentsRow}>
-          <span className={styles.rowTitle}>Recent Searches</span>
-          <span className={styles.recentTermsRow}>
-            {localStorage.recentSearches.map((term) => (
-              <span key={term} className={styles.term}>
-                {term}
+          <div className={styles.searchRow}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setLocalStorage({
+                  ...localStorage,
+                  recentSearches: [...localStorage.recentSearches, searchInput],
+                });
+                setSearchFilter({ ...searchFilter, term: searchInput });
+              }}
+            >
+              <input
+                type="text"
+                value={searchInput}
+                className={styles.search}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <button type="submit" className={styles.searchSubmit}>
+                Search
+              </button>
+            </form>
+          </div>
+
+          <div className={styles.mediaButtonsRow}>
+            {mediaTypes.map((m) => (
+              <span
+                key={m}
+                onClick={() => setMediaFilter(m)}
+                className={`${styles.mediaButton} ${
+                  mediaFilter === m ? styles.selectedMediaType : ''
+                }`}
+              >
+                {m}
               </span>
             ))}
-          </span>
-        </div>
+          </div>
 
-        <div className={styles.cardsRow}>
-          <div className={styles.cards}>
-            <Cards />
+          <div className={styles.recentsRow}>
+            <span className={styles.rowTitle}>Recent Searches</span>
+            <span className={styles.recentTermsRow}>
+              {localStorage.recentSearches.map((term) => (
+                <span key={term} className={styles.term}>
+                  {term}
+                </span>
+              ))}
+            </span>
+          </div>
+
+          <div className={styles.cardsRow}>
+            <div className={styles.cards}>
+              <Cards />
+            </div>
           </div>
         </div>
 
