@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useSWR from 'swr';
 
 export default function Home() {
-  let innerHeight = null; // Init viewport var here, and grab from window object in useEffect
+  const innerHeight = useRef(null); // Init viewport var here, and grab from window object in useEffect
 
   const [mediaFilter, setMediaFilter] = useState('All');
   const [searchInput, setSearchInput] = useState('Paul Graham'); // TODO: Random trending item on landing
@@ -22,6 +22,7 @@ export default function Home() {
   });
 
   const [searchResults, setSearchResults] = useState({ results: [] });
+  const [localStorage, setLocalStorage] = useState({ recentSearches: [] });
 
   const mediaTypes = [
     'All',
@@ -35,7 +36,9 @@ export default function Home() {
     'Ebooks',
   ];
 
-  useEffect(() => (innerHeight = window.innerHeight));
+  useEffect(() => {
+    innerHeight.current = window.innerHeight;
+  }, []);
 
   const Cards = async () => {
     let {
@@ -67,7 +70,7 @@ export default function Home() {
       if (mutableMedia[mutableMedia.length - 1] === 's')
         mutableMedia = media.slice(0, -1);
       return mutableMedia;
-    })();;
+    })();
 
     // TODO: Check for valid enums on other args
 
@@ -91,8 +94,8 @@ export default function Home() {
     );
     let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
-    if (data) data = await data.json()
-    console.log("!!!!!!",data)
+    if (data) data = await data.json().then((data) => data);
+    console.log('!!!!!!', data);
     if (error)
       return (
         <div style={{ color: 'red' }}>
@@ -100,11 +103,12 @@ export default function Home() {
           {paramStr}
         </div>
       );
-    if (!data?.results?.length) return <div style={{ color: 'yellow' }}>loading...</div>;
+    if (!data?.results?.length)
+      return <div style={{ color: 'yellow' }}>loading...</div>;
     //return <div style={{ color: 'red' }}>{typeof data}</div>;
     return JSON.parse(data.results).map((item, idx) => (
       <span key={idx} className={styles.card}>
-        <Image className={styles.thumb} src={item.artworkUrl100} alt={term}/>
+        <Image className={styles.thumb} src={item.artworkUrl100} alt={term} />
       </span>
     ));
   };
@@ -165,7 +169,7 @@ export default function Home() {
 
         <div className={styles.cardsRow}>
           <div className={styles.cards}>
-            <Cards  />
+            <Cards />
           </div>
         </div>
 
