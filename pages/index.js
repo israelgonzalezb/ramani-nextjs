@@ -22,7 +22,7 @@ export default function Home() {
   });
 
   const [searchResults, setSearchResults] = useState({ results: [] });
-  const [localStorage, setLocalStorage] = useState({ recentSearches: [] });
+  const [localStorage, setLocalStorage] = useState({ recentSearches: window.localStorage.recentSearches || [] });
 
   const mediaTypes = [
     'All',
@@ -39,6 +39,10 @@ export default function Home() {
   useEffect(() => {
     innerHeight.current = window.innerHeight;
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('recentSearches', JSON.stringify(localStorage.recentSearches));
+  }, [localStorage.recentSearches]);
 
   const Cards = async () => {
     let {
@@ -94,7 +98,7 @@ export default function Home() {
     );
     let { data, error } = response;
     // return <div style={{ color: 'red' }}>{Object.keys(response.data)}</div>;
-    if (data) data = await data.json().then((data) => data);
+    if (data) data = await data.json().then((res) => res.results);
     console.log('!!!!!!', data);
     if (error)
       return (
@@ -130,6 +134,7 @@ export default function Home() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              setLocalStorage({...localStorage, recentSearches: [...localStorage.recentSearches, searchInput]});
               setSearchFilter({ ...searchFilter, term: searchInput });
             }}
           >
